@@ -5,7 +5,6 @@ var map = [
     [1,0,0,0,1,0,1,0,1,1],
     [1,1,1,1,1,1,1,1,1,1]
 ];
-console.log(map);
 
 var structures = [
     [
@@ -28,23 +27,39 @@ var structures = [
         [0,1,1,1,0],
         [0,0,1,0,0],
         [0,0,1,0,0]
+    ],
+    [
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0]
+    ],
+    [
+        [0,0,0,0,0],
+        [1,1,1,1,1],
+        [0,1,1,1,0],
+        [0,1,1,1,0],
+        [0,1,1,1,0]
     ]
 ];
 
 var tiles = [
     " ",
-    "*"
+    "█"
 ];
 
+var totalStructures = 10;
 function getTile(index) {
-    console.log(index);
     return tiles[index];
 }
 function generateMap() {
     map.length = 0;
+    
     for(var y = 0; y<structures[0].length;y++) {   
         map[y] = [];
-        for(var s = 0; s<structures.length;s++) { 
+        for(var z = 0; z < totalStructures; z++) {
+            var s = ~~(Math.random()*structures.length);
             for(var x = 0; x<structures[s].length;x++) {
                 map[y].push(structures[s][y][x])
             }        
@@ -52,7 +67,6 @@ function generateMap() {
     }
 }
 generateMap();
-console.log(map);
 function render() {
     var text = '';
     for(var y = 0; y<map.length; y++) {
